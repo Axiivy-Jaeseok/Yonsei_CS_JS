@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+<script>
+
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        myFunction(this);
+    }
+};
+
+xhttp.open("GET", "cd_catalog.xml", true);
+xhttp.send();
+
+// LAB6 P1, P2, P3
+// write this function
+function myFunction(xml) {
+    var xmlDoc = xml.responseXML;
+    var output = "";
+    var price = xmlDoc.getElementsByTagName("PRICE");
+    var title = xmlDoc.getElementsByTagName("TITLE");
+
+    for(i=0;i<price.length;i++){
+        if(Number(price[i].childNodes[0].nodeValue) < 9){
+            output += (title[i].childNodes[0].nodeValue + ' ' +price[i].childNodes[0].nodeValue + '<br>');
+        } 
+    }
+    document.getElementById("demo").innerHTML = output;
+
+}
+</script>
+</body>
+</html>

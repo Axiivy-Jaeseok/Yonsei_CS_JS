@@ -1,0 +1,5 @@
+ld = int(input('Enter leftmost digit: '))
+nd1 = int(input('Enter the next digit: '))
+nd2 = int(input('Enter the next digit: '))
+nd3 = int(input('Enter the next digit: '))
+print('The value is', str((2**3)*ld+(2**2)*nd1+2*nd2+nd3))

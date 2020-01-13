@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang = 'ko'>
+	<head>
+		<meta charset = 'UTF-8'/>
+		<title>인터넷프로그래밍 관련 서적</title>
+		<link rel = "stylesheet" type = "text/css" href = "main.css"/>
+		<script>
+			function processTitle()
+			{
+				var booklist = document.getElementsByClassName('short bookname');
+				var listdiv = document.getElementById('book_titles');
+				var i = 1;
+				
+				listdiv.innerHTML = booklist[0].innerText.split('/')[0];
+
+				while(i < booklist.length){
+					listdiv.innerHTML += ('/' + booklist[i].innerText.split('/')[0]);
+					i++;
+				}
+
+
+				////
+
+			}
+		</script>
+
+
+	</head>
+	<body onload="processTitle();">
+			
+			<header>
+			<div class='header'>
+				<h1>Welcome to ICL-BOOK SHOP</h1>
+				<nav>
+					<ul>
+						<li><a class='now_page' href = 'index.html'>메인페이지</a></li>
+						<li><a href = 'join.html'>회원가입</a></li>
+					</ul>
+				</nav>
+			</div>
+			</header>
+			<div class = 'main_container'> <!-- main container-->
+			<section>
+				<div class='section1'>
+				<h2 class='section_title'>HTML5</h2>
+				<article>
+					<div class = 'articlebox'>
+					<img src='./images/html_1.jpg' class = 'book_front'/>
+					<h4 class='long'>HTML5 cookbook / Christopher Schmitt and Kyle Simpson.</h4>
+					<h4 class='short bookname'>HTML5 cookbook / Schmitt, Christopher</h4>
+					<div class= 'description'>
+					<div>O'Reilly</div>
+					<div>2012 / 1st ed</div>
+					</div>
+					</div>
+				</article>
+				<article>
+					<div class = 'articlebox'>
+					<img src='images/html_2.jpg' class = 'book_front'/>
+					<h4 class='long'>(웹디자이너를 위한) HTML5 / 제레미 키스, 레이철 앤드루 지음 ; 김중철, 이시온 옮김</h4>
+					<h4 class='short bookname'>(웹디자이너를 위한) HTML5 / Keith, Jeremy</h4>
+					<div class= 'description'>
+					<div>Webactually</div>
+					<div>2016</div>
+					</div>
+					</div>
+				</article>
+				<article>
+					<div class = 'articlebox'>
+					<img src='images/html_3.jpg' class = 'book_front'/>
+					<h4 class='long'>(Login) HTML5 웹프로그래밍 / 고경희 지음</h4>
+					<h4 class='short bookname'>(Login) HTML5 웹프로그래밍 / 고경희</h4>
+					<div class= 'description'>
+					<div>INFINITY BOOKS</div>
+					<div>2014</div>
+					</div>
+					</div>
+				</article>
+				<article>
+					<div class = 'articlebox'>
+					<img src='images/html_4.jpg' class = 'book_front'/>
+					<h4 class='long'>HTML5 & CSS3 & jQuery / 강양원, 김영천, 임정목 공저</h4>
+					<h4 class='short bookname'>HTML5 & CSS3 & jQuery / 강양원</h4>
+					<div class= 'description'>
+					<div>기한재</div>
+					<div>2017</div>
+					</div>
+					</div>
+				</article>
+				<div class = 'clear'></div>
+				</div>
+			</section>
+			<section>
+				<div class='section2'>
+				<h2 class = 'section_title'>Javascript</h2>
+				<article>
+					<div class = 'articlebox'>
+					<img src='images/js_1.jpg' class = 'book_front'/>
+					<h4 class='long'>Supercharged JavaScript graphics / Raffaele Cecco.</h4>
+					<h4 class='short bookname'>Supercharged JavaScript graphics / Cecco</h4>
+					<div class= 'description'>
+					<div>O'Reilly Media</div>
+					<div>2011 / 1st ed</div>
+					</div>
+					</div>
+				</article>
+				<article>
+					<div class = 'articlebox'>
+					<img src='images/js_2.jpg' class = 'book_front'/>
+					<h4 class='long'>JavaScript가 보이는 그림책 / ANK CO., Ltd. 저 ; 이영란, 김성훈 공역</h4>
+					<h4 class='short bookname'>JavaScript가 보이는 그림책 / 이영란</h4>
+					<div class= 'description'>
+					<div>BM성안당</div>
+					<div>2018 / 개정증보판</div>
+					</div>
+					</div>
+				</article>
+
+				<article>
+					<div class = 'articlebox'>
+					<img src='images/js_3.jpg' class = 'book_front'/>
+					<h4 class='long'>JavaScript web applications / Alex MacCaw</h4>
+					<h4 class='short bookname'>JavaScript web applications / MacCaw</h4>
+					<div class= 'description'>
+					<div>O'Reilly Media</div>
+					<div>2011</div>
+					</div>
+					</div>
+				</article>
+				<article>
+					<div class = 'articlebox'>
+					<img src='images/js_4.jpg' class = 'book_front'/>
+					<h4 class='long'>JavaScript patterns / Stoyan Stefanov</h4>	
+					<h4 class='short bookname'>JavaScript patterns / Stefanov</h4>
+					<div class= 'description'>
+					<div>O'Reilly</div>
+					<div>2010</div>
+					</div>
+					</div>
+				</article>
+
+				<div class = 'clear'></div>
+				</div>
+			</section>
+		
+			<h3>물품 요약</h3>
+			<div id="book_titles"></div>
+
+			</div> <!-- main container end -->
+
+			<footer>
+			<div class = "footer">
+				<h4>made by cheol heon</h4>			
+			</div>
+			</footer>
+	</body>
+</html>

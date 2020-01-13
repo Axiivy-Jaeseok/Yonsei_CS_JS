@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang = 'ko'>
+	<head>
+		<meta charset = 'UTF-8'/>
+		<title>Today Air Polution Report</title>
+		<link rel = "stylesheet" type = "text/css" href = "main.css"/>
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Baloo+Chettan|Merriweather|Noto+Sans+KR');
+
+			* { margin: 0; padding: 0;}
+			body { font-family : 'Merriweather', 'Noto Sans KR'; }
+			li { list-style : none; }
+			img { border : 0 ; }
+			a {
+				text-decoration : none;
+			}
+			li {
+				text-decoration : none;
+			}
+			.now_page {
+				border-top : 2px solid red;
+				border-bottom : 2px solid red;
+			}
+			.header {
+				margin-bottom: 30px;
+				border-bottom: 2px solid black;
+				font-family: 'Baloo Chettan', 'Noto Sans KR' ;
+			}
+			.header > h1 {
+				width: 960px;
+				margin: 0 auto;
+			}
+			.header a {
+				color :black ;
+			}
+			.footer {
+				margin-top: 30px;
+				border-top: 2px solid black;
+				font-family: 'Baloo Chettan', 'Noto Sans KR' ;
+			}
+			.footer > h4 {
+				width: 960px;
+				margin: 0 auto;
+			}
+			.footer  a {
+				color : grey;
+			}
+			.main_container { 
+				width: 960px;
+				margin: 0 auto;			 
+			}
+			.clear
+			{
+				clear:both;
+			}
+			td{
+				border : 1px solid;
+			}
+			th{
+				border : 2px solid;
+				text-align : left;
+				font-weight : normal;
+			}
+		</style>
+		<script>
+			var Lat;
+			var Long;
+			var itemList1;
+			var itemList2;
+
+			function start(){
+
+			   //read parameter from url ( 'get' method append the input values to the url )    
+			   if(location.search){
+			      var A = location.search.replace('?','').split('&');
+			      Lat = A[0].split('=')[1];
+			      Long = A[1].split('=')[1];
+			      // fill the parameters, user writed 
+			      document.getElementById('Lat').value = Lat
+			      document.getElementById('Long').value = Long
+			   }
+
+
+				loadXMLDocument('station_address.xml','airp_sample.xml')
+			}
+
+			window.addEventListener("load", start, false);
+
+
+			function loadXMLDocument(url1,url2)
+			{
+
+			   var xmlHttpRequest1 = new XMLHttpRequest();
+			   var xmlHttpRequest2 = new XMLHttpRequest();
+			   var lname = ''
+			   
+
+			   xmlHttpRequest1.open("GET",url1,false)
+			   xmlHttpRequest1.send();
+			   doc = xmlHttpRequest1.responseXML;
+			   
+			   if(location.search){
+			      lname = getNearestObservatoryName(doc)
+			   }  
+
+			   xmlHttpRequest2.open("GET",url2,false)
+			   xmlHttpRequest2.send();
+			   doc = xmlHttpRequest2.responseXML;
+
+			   getDataTimeValue(doc);   
+			   buildTable(doc,lname);
+			}
+
+
+			//LAB6-P4 
+			//fill the datatime value 
+			function getDataTimeValue(doc)
+			{
+				var datatime = "";
+				var dtime = doc.getElementsByTagName("dataTime");
+
+				datatime += dtime[0].childNodes[0].nodeValue;
+
+				document.getElementById("datatime").innerText = datatime;
+
+			}
+
+			//LAB6-P4
+			//find the nearest observatory, and fill the near_ob value
+			function getNearestObservatoryName(doc){
+				var min = -1;
+				var min_ob = null;
+
+				var la = doc.getElementsByTagName("dmX");
+				var lo = doc.getElementsByTagName("dmY");
+				var ob = doc.getElementsByTagName("stationName");
+
+				var inputla = Number(document.getElementById("Lat").value);
+				var inputlo = Number(document.getElementById("Long").value);
+
+
+				for(var i=0;i<la.length;i++){
+					var tmp = Math.sqrt((la[i].childNodes[0].nodeValue-inputla)**2+(lo[i].childNodes[0].nodeValue-inputlo)**2);
+
+					if(min == -1){
+						min_ob = ob[i].childNodes[0].nodeValue;
+						min = tmp;
+					}else{
+						if(min > tmp){
+							min_ob = ob[i].childNodes[0].nodeValue;
+							min = tmp;
+						}
+					}
+				}
+
+				document.getElementById("near_ob").innerText = min_ob;
+
+				return min_ob;
+			}
+
+
+
+			function getValue(node){
+			   if(node.childNodes[0])
+			   {
+			      return node.childNodes[0].nodeValue;
+			   }
+			   else return ''
+			}
+
+			//LAB6-P5
+			//make table and fill the datatime value 
+			//style the nearest laboratory's row 
+			function buildTable(doc, lname)
+			{
+				var itemlist = doc.childNodes[0].children[1].children[0].children;
+				var tdiv = document.getElementById("air_data");
+				var tnode = document.createElement("table");
+				var thnode = document.createElement("thead");
+				var tbnode = document.createElement("tbody");
+
+				thnode.innerHTML = "<tr><th>관측소</th><th>pm10</th><th>pm10/1h</th><th>pm25</th><th>pm25/1h</th></tr>";
+				
+				for(var i = 0; i < itemlist.length; i++){
+					var trnode = document.createElement("tr");
+					trnode.innerHTML="<td>"+getValue(itemlist[i].children[0])+"</td><td>"+getValue(itemlist[i].children[17])+"</td><td>"+getValue(itemlist[i].children[19])+"</td><td>"+getValue(itemlist[i].children[18])+"</td><td>"+getValue(itemlist[i].children[20])+"</td>";
+					
+					if(getValue(itemlist[i].children[0]) == lname){
+						trnode.setAttribute("style", "background-color:yellow;");
+					}
+					tbnode.appendChild(trnode);
+				}
+
+				tnode.appendChild(thnode);
+				tnode.appendChild(tbnode);
+				tdiv.appendChild(tnode);
+			}
+		</script>
+	</head>
+	<body>
+			
+			<header>
+			<div class='header'>
+				<h1>ICL Today Air Polution Report</h1>
+			</div>
+			</header>
+			<div class = 'main_container'> <!-- main container-->
+				<p>
+					<h4>Measurement Date : <span id = "datatime"></span></h4> 
+				</p>
+				<br>
+				<br>
+
+				<form method = "get">
+					<h3>Nearest Observatory : <span id = "near_ob"></span></h3>
+					<p><label> Latitude  : <input id= "Lat" name = "Lat" type = "text" required autofocus/></label></p>
+					<p><label> Longitude : <input id= "Long" name = "Long" type = "text" required/></label></p>
+					<h6> InputRange : ( Latitude : 37.413294~37.715133 , Longitude : 127.269311~126.734086 )</h6>
+					<input type = "submit" value="search">
+				</form>
+				<br>
+				<br>
+				
+				<h1>REPORT</h1>
+			 	<div id = "air_data">
+				</div>
+			
+			</div> <!-- main container end -->
+			<footer>
+			<div class = "footer">
+				<h4>made by somebody</h4>
+			</div>
+			</footer>
+	</body>
+</html>

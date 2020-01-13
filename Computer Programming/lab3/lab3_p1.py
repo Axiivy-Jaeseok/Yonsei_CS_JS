@@ -1,0 +1,11 @@
+from math import floor
+storage = int(input("Enter USB size (GB): "))
+storage = storage*(10**9)
+gif = floor(storage/(800*600*1/5))
+jpeg = floor(storage/(800*600*3/25))
+png = floor(storage/(800*600*3/8))
+tiff = floor(storage/(800*600*6))
+print(format(gif, '>5')+' images in GIF format can be stored')
+print(format(jpeg, '>5')+' images in JPEG format can be stored')
+print(format(png, '>5')+' images in PNG format can be stored')
+print(format(tiff, '>5')+' images in TIFF format can be stored')

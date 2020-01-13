@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title>Address Book</title>
+	<script src = "AddressBook.js"></script>
+</head>
+<body>
+<div>
+<input id = "CDCatalogButton" type = "button" value = "CD Catalog">
+<input id = "addEntryButton" type = "button" value = "Add an Entry">
+</div>
+<div id = "CDCatalogBook">
+	<p>Search By Last Name: <input id = "searchInput"></p>
+	<div id = "Names"></div>
+</div>
+<div id = "addEntry" style = "display:none">
+<p><label>Title:</label><input type="text" id="title"></p>
+<p><label>Artist:</label><input type="text" id="artist"><span id = "validateName"></span></p>
+<p><label>Country:</label><input type="text" id="country"></p>
+<p><label>Company:</label><input type="text" id="company"></p>
+<p><label>Price:</label><input type="text" id="price"></p>
+<p><label>Year:</label><input type="text" id="year"></p>
+<p><input type="submit" value="Submit" id="submitButton"></p>
+<div id="success" class="validator"></div>
+</div>
+
+</body>
+</html>

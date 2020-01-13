@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Join</title>
+    </head>
+    <body>
+        <h1>구매자 회원가입</h1>
+        <p>
+            <br><span><mark><strong>&lt;안내&gt;</strong></mark></span>
+            &nbsp;회원가입 시 상기 회사 회원가입 약관에 동의한 것으로 간주됩니다.
+        </p>
+        <p><br>회원 가입을 위해서 아래의 회원정보를 기입해주시기 바랍니다.</p>
+        <form method="post" name="join_inform">
+            <fieldset>
+                <legend>개인정보 입력</legend>
+                <ul>
+                    <li>
+                        <label>이름&nbsp;<input type="text" id="name"
+                            placeholder="ex)홍길동" autofocus required></label>
+                    </li>
+                    <li>
+                        <label>아이디&nbsp;<input type="text" id="id"
+                            placeholder="ID 입력(최대 20자)" size="20" maxlength="20" required>
+                        </label><input type="button" value="중복확인">
+                    </li>
+                    <li>
+                        <label>비밀번호&nbsp;<input type="password" id="pw"
+                            placeholder="최대 15자" size="10" maxlength="15" required></label>
+                    </li>
+                    <li>
+                        <label>생년월일&nbsp;<input type="date" id="birth" required></label>
+                    </li>
+                    <li>
+                        <label>휴대전화번호&nbsp;<input type="tel" id="phone"
+                            placeholder="ex)010-1234-5678" pattern="\d{3}-\d{4}-\d{4}" required></label>
+                    </li>
+                    <li>
+                        <label>이메일 주소&nbsp;<input type="email" id="mail"
+                            placeholder="ex)abcdefg@yonsei.ac.kr" required autocomplete="on"></label>
+                    </li>
+                </ul>
+            </fieldset><br>
+            <fieldset>
+                <legend>추가 정보 입력(선택사항)</legend>
+                <ul>
+                    <li>
+                        <label>성별&nbsp;</label><select name="gender">
+                            <option value="man">남자</option>
+                            <option value="woman">여자</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>거주지역&nbsp;<input type="text" id="place" autocomplete="on"></label>
+                    </li>
+                    <li>
+                        <label>쇼핑관심분야(다중선택가능)&nbsp;<input type="checkbox" value="식료품">식료품&nbsp;</label>
+                            <label><input type="checkbox" value="스포츠">스포츠&nbsp;</label><label><input type="checkbox" value="패션">패션&nbsp;</label>
+                            <label><input type="checkbox" value="가전/디지털">가전/디지털&nbsp;</label><label><input type="checkbox" value="화장품">화장품&nbsp;</label>
+                    </li>
+                </ul>
+            </fieldset>
+            <br>
+            <input type="submit" value="가입신청">
+            <input type="reset" value="입력초기화">
+        </form>
+    </body>
+</html>

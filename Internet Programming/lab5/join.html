@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset = 'UTF-8'/>
+		<title >회원가입 페이지</title>
+		<link rel = "stylesheet" type = "text/css" href = "main.css"/>
+		<script>
+			function add_in()
+			{
+				var name = document.getElementById('add_int').value;
+				var node = document.createElement('li');
+				var namenode = document.createTextNode(name);
+				var spannode = document.createElement('span');
+
+				spannode.setAttribute('onclick', 'del_in()');
+
+				var delnode = document.createTextNode('(del)');
+
+				spannode.appendChild(delnode);
+				node.appendChild(namenode);
+				node.appendChild(spannode);
+				
+				document.getElementById('interests').appendChild(node);
+				///
+			}
+
+			function del_in()
+			{
+				var parentnode = event.target.parentNode;
+				parentnode.parentNode.removeChild(parentnode);
+
+				///
+			}
+		</script>
+	</head>
+	<body>
+		<header>
+			<div class='header'>
+				<h1>Welcome to ICL-BOOK SHOP</h1>
+				<nav>
+					<ul>
+						<li><a href = 'index.html'>메인페이지</a></li>
+						<li><a class = 'now_page' href = 'join.html'>회원가입</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div class = 'main_container'> <!-- main container-->
+		<form method = "post">
+		<p> 개인정보 (필수)
+			<p><label> 이름 :<input name = "name" type = "text" size = 25 placeholder = "이름을 입력하세요" required autocomplete="name" autofocus/></label></p>
+			<p><label> 생일 :<input name = "bday" type = "date" required/></label></p>
+		 	<p><label> 학년 :<input name = "grade" type = "number" min = "1" max = "9" step = "1" required/></label></p>
+		 	<p><label> 전화번호 : <input type ="tel" placeholder= "(###)###-####" pattern="\(\d{3}\)+\d{3}-\d{4}" required/></label></p>
+		</p>
+		<p> 관심분야 (입력)
+			<ol id='interests'>
+			</ol>
+			<input type="text" id='add_int'></input><input type="button" value="add" id='add_btt' onclick='add_in();'>
+			<p><label> 현재의 행복도: (0~5, 5점 가장 행복)
+			<input name = "happiness" type = "range" min = "0" max = "5" value = "10"/>
+			</label></p>
+		</p>
+			<input type = "submit">
+		</form>
+		</div>  <!-- main container end-->
+		<footer>
+			<div class = "footer">
+				<h4>made by cheol heon</h6>
+				<h4><a href = 'index2.html'>about cheol heon</a></h6>
+			</div>
+		</footer>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+<script>
+
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        myFunction(this);
+    }
+};
+
+xhttp.open("GET", "cd_catalog.xml", true);
+xhttp.send();
+
+// LAB6 P1, P2, P3
+// write this function
+function myFunction(xml) {
+    var xmlDoc = xml.responseXML;
+    var cd = xmlDoc.getElementsByTagName("CD");
+    var jazzcount = 0, hiphopcount = 0, gangcount = 0;
+    var output = "";
+
+    for(var i=0;i<cd.length;i++){
+        if(cd[i].attributes.item(0).nodeValue === "jazz") jazzcount += 1;
+        if(cd[i].attributes.item(0).nodeValue === "Hip Hop") hiphopcount += 1;
+        if(cd[i].attributes.item(0).nodeValue === "Gangster Music") gangcount += 1;
+    }
+
+    output += ("Jazz-" + jazzcount + " Hip Hop-" + hiphopcount + " Gangster Music-" + gangcount);
+
+    document.getElementById("demo").innerHTML = output;
+
+}
+</script>
+</body>
+</html>
